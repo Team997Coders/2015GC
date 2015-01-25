@@ -1,14 +1,22 @@
 
 package org.usfirst.frc.team997.robot;
 
+import static org.usfirst.frc.team997.robot.RobotMap.leftDrive;
+import static org.usfirst.frc.team997.robot.RobotMap.rightDrive;
+
+import org.usfirst.frc.team997.robot.commands.ExampleCommand;
+import org.usfirst.frc.team997.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team997.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team997.robot.subsystems.Gatherer;
+import org.usfirst.frc.team997.robot.subsystems.RSpeedController;
+
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
-import org.usfirst.frc.team997.robot.commands.ExampleCommand;
-import org.usfirst.frc.team997.robot.subsystems.ExampleSubsystem;
-import org.usfirst.frc.team997.robot.subsystems.Gatherer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,9 +28,10 @@ import org.usfirst.frc.team997.robot.subsystems.Gatherer;
 public class Robot extends IterativeRobot {
 	
 	
-
+	CameraServer server;
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static final Gatherer myGatherer = new Gatherer();
+	public static final Drivetrain subDriveTrain = new Drivetrain(new VictorSP(leftDrive), new RSpeedController(new VictorSP(rightDrive),true));
 	public static OI oi;
 
     Command autonomousCommand;
@@ -37,7 +46,11 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
         // instantiate the command used for the autonomous period
         autonomousCommand = new ExampleCommand();
-    }
+        server = CameraServer.getInstance();
+        server.setQuality(50);
+        //the camera name (ex "cam0") can be found through the roborio web interface
+        server.startAutomaticCapture("cam0");
+   }
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
@@ -75,6 +88,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+    	
         Scheduler.getInstance().run();
     }
     

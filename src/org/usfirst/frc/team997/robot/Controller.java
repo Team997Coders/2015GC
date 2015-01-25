@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.Joystick;
  * @author Chris G.
  * ASF #LAG
  */
-public class Controoooler {
+public class Controller {
 	/**
 	 * Da joystick
 	 */
@@ -17,7 +17,7 @@ public class Controoooler {
 	 * Give the dang port for da Controooler
 	 * @param porterino
 	 */
-	public Controoooler(int porterino) {
+	public Controller(int porterino) {
 		j = new Joystick(porterino);
 	}
 	
@@ -32,21 +32,21 @@ public class Controoooler {
 	 * Left y
 	 */
 	public double getY() {
-		return j.getY();
+		return -j.getY();
 	}
 	
 	/**
 	 * Right x
 	 */
 	public double getRX() {
-		return j.getX(Hand.kRight);
+		return j.getRawAxis(4);
 	}
 
 	/**
 	 * Right y
 	 */
 	public double getRY() {
-		return j.getY(Hand.kRight);
+		return -j.getRawAxis(5);
 	}
 	
 	/**

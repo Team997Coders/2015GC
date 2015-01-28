@@ -1,7 +1,5 @@
 package org.usfirst.frc.team997.robot;
 
-import edu.wpi.first.wpilibj.buttons.Button;
-import org.usfirst.frc.team997.robot.commands.ExampleCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -9,15 +7,19 @@ import org.usfirst.frc.team997.robot.commands.ExampleCommand;
  */
 public class OI {
 	public Controller myController;
-	
+	public Controller jumpPad;
 	public OI () {
 		myController = new Controller(1);
+		jumpPad = new Controller(2);
 	}
 	public double getDesiredArcadeLeftSpeed() {
 		return deadBand((myController.getY() + myController.getRX()),.1);
 	}
 	public double getDesiredArcadeRightSpeed() {
 		return deadBand((myController.getY() - myController.getRX()),.1);
+	}
+	public double getDesiredElevatorPosition() {
+		return jumpPad.getY();
 	}
 	public double deadBand(double a, double dead) {
 		if (Math.abs(a)<dead){

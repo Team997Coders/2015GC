@@ -70,7 +70,7 @@ public class VelMotor {
 	}
 	
 	public void setDesiredVelocity(double rate) {
-		desiredVelocity = rate * 1.5;
+		desiredVelocity = rate;
 	}
 	
 }

@@ -31,6 +31,20 @@ public class Controller {
 	/**
 	 * Left y
 	 */
+	public double getLY() {
+		return -j.getY();
+	}
+	
+	/**
+	 * Left x
+	 */
+	public double getLX() {
+		return j.getX();
+	}
+	
+	/**
+	 * Left y
+	 */
 	public double getY() {
 		return -j.getY();
 	}
@@ -53,27 +67,30 @@ public class Controller {
 	 * Left trigger
 	 */
 	public boolean getLT() {
-		return j.getTrigger(Hand.kLeft);
+		return (j.getRawAxis(2)>.75);
 	}
-	
 	/**
 	 * Right trigger
 	 */
 	public boolean getRT() {
-		return j.getTrigger(Hand.kRight);
+		return (j.getRawAxis(3)>.75);
 	}
 
 	/**
 	 * Left Button (above trigger)
 	 */
 	public boolean getLB() {
-		return j.getTop(Hand.kLeft);
+		return j.getRawButton(5);
 	}
 	
 	/**
 	 * Right button (above trigger)
 	 */
 	public boolean getRB() {
-		return j.getTop(Hand.kRight);
+		return j.getRawButton(6);
+	}
+	
+	public boolean getRawButton(int b){
+		return j.getRawButton(b);
 	}
 }

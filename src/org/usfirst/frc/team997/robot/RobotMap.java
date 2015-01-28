@@ -25,12 +25,34 @@ public class RobotMap {
 	public static final int gatherer = 0;
 	public static final int leftDrive = 2;
 	public static final int rightDrive = 3;
+	public static final int ElevatorMotorSlot = 4;
+
 	
 	public static final int leftDriveEncoder1 = 1;
 	public static final int leftDriveEncoder2 = 2;
 	public static final int rightDriveEncoder1 = 3;
 	public static final int rightDriveEncoder2 = 4;
+	public static final int elevatorEncoder1 = 5;
+	public static final int elvatorEncoder2 = 6;
+	
+	public static final int ElevatorSolenoidFore = 0;
+	public static final int ElevatorSolenoidAft = 1;
+	
 	public static final int defaultDriveMode = Drivetrain.VoltageMode;
-	public static double driveVelCal = .1;
-	public static double maxAccelDrive = 10;
+	
+	public static final double driveVelCal = .1;
+	public static final double maxAccelDrive = 10;
+	
+	public static final double pElev = 1;
+	public static final double iElev = 0;
+	public static final double dElev = 0;
+	public static final double elevatorMaxAccel = .25;
+	public static final double elevatorVelCal = .1;
+	public static final double ElevatorDistancePerPulse =.00267;
+	public static final double DriveTrainDistancePerPulse =.00267;
+	public static final double absuluteElevatorTolerance = .01;
+	public static final double percentTolerance = 1;
+
+	
+	
 }

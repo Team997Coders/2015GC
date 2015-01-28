@@ -33,6 +33,8 @@ public class Drivetrain extends Subsystem {
 		rightMotor = right;
 		leftEnc = new Encoder(leftDriveEncoder1,leftDriveEncoder2);
 		rightEnc = new Encoder(rightDriveEncoder1,rightDriveEncoder2);
+		leftEnc.setDistancePerPulse(DriveTrainDistancePerPulse);
+		rightEnc.setDistancePerPulse(DriveTrainDistancePerPulse);
 		leftAccelMotor = new AccelMotor(new VelMotor(leftMotor, leftEnc, RobotMap.driveVelCal), RobotMap.maxAccelDrive);
 		leftAccelMotor = new AccelMotor(new VelMotor(leftMotor, rightEnc, RobotMap.driveVelCal), RobotMap.maxAccelDrive);
 		currentMode = RobotMap.defaultDriveMode;

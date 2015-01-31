@@ -7,6 +7,7 @@ import org.usfirst.frc.team997.robot.RobotMap;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -61,5 +62,9 @@ public class Elevator extends PIDSubsystem {
     public void stop() {
     	mySpeedController.set(0);
     }
+
+	public void SmartDashboard() {
+		SmartDashboard.putNumber("Elevator Target", this.getSetpoint());
+	}
    
 }

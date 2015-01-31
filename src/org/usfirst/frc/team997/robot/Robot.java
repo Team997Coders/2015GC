@@ -23,6 +23,8 @@ import org.usfirst.frc.team997.robot.subsystems.RSpeedController;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -41,7 +43,9 @@ public class Robot extends IterativeRobot {
 	
 	
 	CameraServer server;
-	public static final Gatherer myGatherer = new Gatherer();
+	public static final Gatherer myGatherer = new Gatherer(
+			new Talon(RobotMap.gathererLeft),
+			new Talon(RobotMap.gathererRight));
 	public static final Elevator myElevator = new Elevator(
 			new ElevatorSpeedController(
 					new Talon(ElevatorMotorSlot), 
@@ -55,7 +59,10 @@ public class Robot extends IterativeRobot {
 			dElev);
 	public static final Drivetrain subDriveTrain = new Drivetrain(
 			new VictorSP(leftDrive), 
-			new RSpeedController(new VictorSP(rightDrive),true));
+			new RSpeedController(new VictorSP(rightDrive),true),
+			new Encoder(RobotMap.leftDriveEncoder1,RobotMap.leftDriveEncoder2),
+			new Encoder(RobotMap.rightDriveEncoder1, RobotMap.rightDriveEncoder2),
+			new Gyro(RobotMap.gyroSlot));
 	public static OI oi;
 
     Command autonomousCommand;
@@ -112,7 +119,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-    	
+    	SmartDashboard();
         Scheduler.getInstance().run();
     }
     
@@ -121,5 +128,12 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    
+    public void SmartDashboard() {
+    	myGatherer.SmartDashboard();
+    	oi.SmartDashboard();
+    	subDriveTrain.SmartDashboard();
+    	myElevator.SmartDashboard();
     }
 }

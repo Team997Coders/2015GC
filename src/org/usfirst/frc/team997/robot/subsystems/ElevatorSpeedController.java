@@ -1,12 +1,14 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.SpeedController;
+import org.usfirst.frc.team997.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.*;
 
 public class ElevatorSpeedController implements SpeedController {
 
 	private SpeedController motor;
 	private DoubleSolenoid brake;
+	
 	
 	public ElevatorSpeedController(SpeedController m, DoubleSolenoid b) {
 		motor = m;
@@ -33,6 +35,8 @@ public class ElevatorSpeedController implements SpeedController {
 		if (Math.abs(speed)< .05) {
 			motor.set(0);
 			brake.set(DoubleSolenoid.Value.kForward);
+		} else if (getElevatorCurrent()>RobotMap.ElevatorMaxCurrent) {
+			motor.set(0);
 		} else {
 			brake.set(DoubleSolenoid.Value.kReverse);
 			motor.set(speed);
@@ -41,8 +45,10 @@ public class ElevatorSpeedController implements SpeedController {
 
 	@Override
 	public void set(double arg0, byte arg1) {
-		// TODO Auto-generated method stub
 
 	}
-
+	
+	private double getElevatorCurrent() {
+		return new PowerDistributionPanel().getCurrent(RobotMap.ElevatorMotorSlot);
+	}
 }

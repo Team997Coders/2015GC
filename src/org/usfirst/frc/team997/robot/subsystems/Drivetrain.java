@@ -1,13 +1,21 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
-import static org.usfirst.frc.team997.robot.RobotMap.*;
+import static org.usfirst.frc.team997.robot.RobotMap.DriveTrainDistancePerPulse;
+import static org.usfirst.frc.team997.robot.RobotMap.driveVelCal;
+import static org.usfirst.frc.team997.robot.RobotMap.leftDriveEncoder1;
+import static org.usfirst.frc.team997.robot.RobotMap.leftDriveEncoder2;
+import static org.usfirst.frc.team997.robot.RobotMap.maxAccelDrive;
+import static org.usfirst.frc.team997.robot.RobotMap.rightDriveEncoder1;
+import static org.usfirst.frc.team997.robot.RobotMap.rightDriveEncoder2;
 
 import org.usfirst.frc.team997.robot.RobotMap;
 import org.usfirst.frc.team997.robot.commands.ArcadeDrive;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -16,6 +24,7 @@ public class Drivetrain extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+	private Gyro myGyro;
 	private SpeedController leftMotor;
 	private SpeedController rightMotor;
 	private AccelMotor leftAccelMotor;
@@ -28,16 +37,17 @@ public class Drivetrain extends Subsystem {
 	public static final int AccelorationMode = 2;
 	
 	private int currentMode;
-	public Drivetrain(SpeedController left, SpeedController right) {
+	public Drivetrain(SpeedController left, SpeedController right, Encoder leftEncoder, Encoder rightEncoder, Gyro gyro) {
 		leftMotor = left;
 		rightMotor = right;
-		leftEnc = new Encoder(leftDriveEncoder1,leftDriveEncoder2);
-		rightEnc = new Encoder(rightDriveEncoder1,rightDriveEncoder2);
+		leftEnc = leftEncoder;
+		rightEnc = rightEncoder;
 		leftEnc.setDistancePerPulse(DriveTrainDistancePerPulse);
 		rightEnc.setDistancePerPulse(DriveTrainDistancePerPulse);
-		leftAccelMotor = new AccelMotor(new VelMotor(leftMotor, leftEnc, RobotMap.driveVelCal), RobotMap.maxAccelDrive);
-		leftAccelMotor = new AccelMotor(new VelMotor(leftMotor, rightEnc, RobotMap.driveVelCal), RobotMap.maxAccelDrive);
+		leftAccelMotor = new AccelMotor(new VelMotor(leftMotor, leftEnc, driveVelCal), maxAccelDrive, "left");
+		rightAccelMotor = new AccelMotor(new VelMotor(rightMotor, rightEnc, driveVelCal), maxAccelDrive, "right");
 		currentMode = RobotMap.defaultDriveMode;
+		myGyro = gyro;
 	}
 	
 	private void driveVoltage(double lSpeed, double rSpeed) {
@@ -72,5 +82,23 @@ public class Drivetrain extends Subsystem {
     public void initDefaultCommand() {
         setDefaultCommand(new ArcadeDrive());
     }
+
+	public void SmartDashboard() {
+		SmartDashboard.putString("Drivetrain Mode", modeAsString());
+	}
+	
+	public String modeAsString() {
+		if(currentMode == VoltageMode)
+			return "Voltage";
+		if (currentMode == AccelorationMode) 
+			return "Acceloration";
+		if (currentMode == VelocityMode) 
+			return "Velocity";
+			return null;
+	}
+	
+	public double getGyro() {
+		return myGyro.getAngle();
+	}
 }
 

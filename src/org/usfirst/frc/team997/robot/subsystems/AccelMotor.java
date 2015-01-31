@@ -11,7 +11,15 @@ public class AccelMotor {
 	private double mMaxAccel;
 	private double desiredVel;
 	private double accelCappedVel;
+	private String name;
+	public AccelMotor(VelMotor motor, double maxAccelPerSecond, String name) {
+		this.name = name;
+		AccelMotorCon(motor, maxAccelPerSecond);
+	}
 	public AccelMotor(VelMotor motor, double maxAccelPerSecond) {
+		AccelMotorCon(motor,maxAccelPerSecond);
+	}
+	private void AccelMotorCon(VelMotor motor, double maxAccelPerSecond) {
 		mMotor = motor;
 		mMaxAccel = (maxAccelPerSecond/200); 
 		desiredVel = 0;
@@ -39,9 +47,9 @@ public class AccelMotor {
 	}
 	public void setDesiredVelocity(double a) {
 		   desiredVel = a;
-		   SmartDashboard.putNumber("accelCappedVel", accelCappedVel);
-		   SmartDashboard.putNumber("desiredVel(accel)", desiredVel);
-		   SmartDashboard.putNumber("Max Accel", mMaxAccel);
+		   SmartDashboard.putNumber(name + "accelCappedVel", accelCappedVel);
+		   SmartDashboard.putNumber(name + "desiredVel(accel)", desiredVel);
+		   SmartDashboard.putNumber(name + "Max Accel", mMaxAccel);
 	}
 	    
 	private TimerTask update = new TimerTask() {
@@ -55,5 +63,6 @@ public class AccelMotor {
 	public void setMaxAccel(double a) {
 		mMaxAccel = a; 
 	}
+	
 }
 

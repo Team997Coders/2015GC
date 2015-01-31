@@ -9,24 +9,32 @@ public class OI {
 	public Controller myController;
 	public Controller jumpPad;
 	public OI () {
-		myController = new Controller(1);
-		jumpPad = new Controller(2);
+		myController = new Controller(0);
+		jumpPad = new Controller(1);
 	}
+	
 	public double getDesiredArcadeLeftSpeed() {
 		return deadBand((myController.getY() + myController.getRX()),.1);
 	}
+	
 	public double getDesiredArcadeRightSpeed() {
 		return deadBand((myController.getY() - myController.getRX()),.1);
 	}
+	
 	public double getDesiredElevatorPosition() {
 		return jumpPad.getY();
 	}
+	
 	public double deadBand(double a, double dead) {
 		if (Math.abs(a)<dead){
 			return 0;
 		} else {
 			return a;
 		}
+	}
+
+	public void SmartDashboard() {
+		
 	}
 }
 

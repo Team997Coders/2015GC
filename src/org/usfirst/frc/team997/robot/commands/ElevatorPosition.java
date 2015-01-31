@@ -4,7 +4,9 @@ import static org.usfirst.frc.team997.robot.Robot.myElevator;
 import static org.usfirst.frc.team997.robot.Robot.oi;
 
 import org.usfirst.frc.team997.robot.Robot;
+import org.usfirst.frc.team997.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -39,6 +41,10 @@ public class ElevatorPosition extends Command {
     	myElevator.disable();
 
     }
+    
+    private double getElevatorCurrent() {
+		return new PowerDistributionPanel().getCurrent(RobotMap.ElevatorMotorSlot);
+	}
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run

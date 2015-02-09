@@ -93,4 +93,8 @@ public class Controller {
 	public boolean getRawButton(int b){
 		return j.getRawButton(b);
 	}
+	
+	public void setLed(int led, boolean value) {
+		j.setOutput(led, value);
+	}
 }

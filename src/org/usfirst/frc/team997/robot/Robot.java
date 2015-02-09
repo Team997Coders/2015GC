@@ -8,7 +8,7 @@ import static org.usfirst.frc.team997.robot.RobotMap.dElev;
 import static org.usfirst.frc.team997.robot.RobotMap.elevatorEncoder1;
 import static org.usfirst.frc.team997.robot.RobotMap.elevatorMaxAccel;
 import static org.usfirst.frc.team997.robot.RobotMap.elevatorVelCal;
-import static org.usfirst.frc.team997.robot.RobotMap.elvatorEncoder2;
+import static org.usfirst.frc.team997.robot.RobotMap.elevatorEncoder2;
 import static org.usfirst.frc.team997.robot.RobotMap.iElev;
 import static org.usfirst.frc.team997.robot.RobotMap.leftDrive;
 import static org.usfirst.frc.team997.robot.RobotMap.pElev;
@@ -22,10 +22,12 @@ import org.usfirst.frc.team997.robot.subsystems.Gatherer;
 import org.usfirst.frc.team997.robot.subsystems.RSpeedController;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Command;
@@ -41,28 +43,39 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class Robot extends IterativeRobot {
 	
-	
 	CameraServer server;
+
+	// this will force the compressor to start, even it I haven't instanciated
+	// a pneumatic solenoid yet.
+	public static final Compressor myCompressor = new Compressor(0);
+	
+	// let's do the power panel too.  Just to be complete.
+	public static final PowerDistributionPanel pdp = new PowerDistributionPanel();
+	
 	public static final Gatherer myGatherer = new Gatherer(
 			new Talon(RobotMap.gathererLeft),
 			new Talon(RobotMap.gathererRight));
+	
 	public static final Elevator myElevator = new Elevator(
 			new ElevatorSpeedController(
 					new Talon(ElevatorMotorSlot), 
 					new DoubleSolenoid(ElevatorSolenoidFore, ElevatorSolenoidAft)), 
 			elevatorVelCal, 
-			elevatorMaxAccel, 
+			elevatorMaxAccel,
 			elevatorEncoder1, 
-			elvatorEncoder2, 
+			elevatorEncoder2, 
 			pElev, 
 			iElev, 
 			dElev);
+	
 	public static final Drivetrain subDriveTrain = new Drivetrain(
-			new VictorSP(leftDrive), 
+			new RSpeedController(new VictorSP(leftDrive),true),
 			new RSpeedController(new VictorSP(rightDrive),true),
 			new Encoder(RobotMap.leftDriveEncoder1,RobotMap.leftDriveEncoder2),
 			new Encoder(RobotMap.rightDriveEncoder1, RobotMap.rightDriveEncoder2),
+			new DoubleSolenoid(RobotMap.DriveShiftLowSolenoid, RobotMap.DriveShiftHighSolenoid),
 			new Gyro(RobotMap.gyroSlot));
+	
 	public static OI oi;
 
     Command autonomousCommand;

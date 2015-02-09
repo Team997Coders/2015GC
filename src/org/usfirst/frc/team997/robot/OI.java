@@ -32,9 +32,12 @@ public class OI {
 			return a;
 		}
 	}
+	
+	public void setLED (int led, boolean value){
+		jumpPad.setLed(led, value);
+	}
 
 	public void SmartDashboard() {
 		
 	}
 }
-

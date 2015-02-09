@@ -1,5 +1,6 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
+import org.usfirst.frc.team997.robot.Robot;
 import org.usfirst.frc.team997.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.*;
@@ -49,6 +50,6 @@ public class ElevatorSpeedController implements SpeedController {
 	}
 	
 	private double getElevatorCurrent() {
-		return new PowerDistributionPanel().getCurrent(RobotMap.ElevatorMotorSlot);
+		return Robot.pdp.getCurrent(RobotMap.ElevatorMotorSlot);
 	}
 }

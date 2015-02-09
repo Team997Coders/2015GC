@@ -3,6 +3,8 @@ package org.usfirst.frc.team997.robot;
 import org.usfirst.frc.team997.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -36,11 +38,16 @@ public class RobotMap {
 	public static final int rightDriveEncoder1 = 3;
 	public static final int rightDriveEncoder2 = 4;
 	public static final int elevatorEncoder1 = 5;
-	public static final int elvatorEncoder2 = 6;
+	public static final int elevatorEncoder2 = 6;
 	public static final int gyroSlot = 7;
 	
-	public static final int ElevatorSolenoidFore = 0;
-	public static final int ElevatorSolenoidAft = 1;
+	public static final int DriveShiftLowSolenoid = 0;
+	public static final int DriveShiftHighSolenoid = 1;
+	public static final int ElevatorSolenoidFore = 2;
+	public static final int ElevatorSolenoidAft = 3;
+	
+	public static final Value DriveShiftLowDirection = DoubleSolenoid.Value.kForward;
+	public static final Value DriveShiftHighDirection = DoubleSolenoid.Value.kForward;
 	
 	public static final int defaultDriveMode = Drivetrain.VoltageMode;
 	public static final double driveVelCal = .1;
@@ -55,8 +62,5 @@ public class RobotMap {
 	public static final double absuluteElevatorTolerance = .01;
 	public static final double percentTolerance = 1;
 	public static final double ElevatorMaxCurrent = 2000;
-	
-
-	
 	
 }

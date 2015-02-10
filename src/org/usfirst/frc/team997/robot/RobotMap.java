@@ -47,7 +47,7 @@ public class RobotMap {
 	public static final int ElevatorSolenoidAft = 3;
 	
 	public static final Value DriveShiftLowDirection = DoubleSolenoid.Value.kForward;
-	public static final Value DriveShiftHighDirection = DoubleSolenoid.Value.kForward;
+	public static final Value DriveShiftHighDirection = DoubleSolenoid.Value.kReverse;
 	
 	public static final int defaultDriveMode = Drivetrain.VoltageMode;
 	public static final double driveVelCal = .1;

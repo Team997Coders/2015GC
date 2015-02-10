@@ -1,24 +1,26 @@
 package org.usfirst.frc.team997.robot;
 
 
+import edu.wpi.first.wpilibj.Joystick;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public Controller myController;
-	public Controller jumpPad;
+	public ControllerTwoJoysticks myController;
+	public Joystick jumpPad;
 	public OI () {
-		myController = new Controller(0);
-		jumpPad = new Controller(1);
+		myController = new ControllerTwoJoysticks(0);
+		jumpPad = new Joystick(1);
 	}
 	
 	public double getDesiredArcadeLeftSpeed() {
-		return deadBand((myController.getY() + myController.getRX()),.1);
+		return deadBand((myController.getLY() + myController.getRX()),.1);
 	}
 	
 	public double getDesiredArcadeRightSpeed() {
-		return deadBand((myController.getY() - myController.getRX()),.1);
+		return deadBand((myController.getLY() - myController.getRX()),.1);
 	}
 	
 	public double getDesiredElevatorPosition() {
@@ -34,7 +36,7 @@ public class OI {
 	}
 	
 	public void setLED (int led, boolean value){
-		jumpPad.setLed(led, value);
+		jumpPad.setOutput(led, value);
 	}
 
 	public void SmartDashboard() {

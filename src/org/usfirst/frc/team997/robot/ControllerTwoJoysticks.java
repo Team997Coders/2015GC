@@ -4,10 +4,10 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
 
 /**
+ *
  * @author Chris G.
- * ASF #LAG
  */
-public class Controller {
+public class ControllerTwoJoysticks {
 	/**
 	 * Da joystick
 	 */
@@ -17,52 +17,40 @@ public class Controller {
 	 * Give the dang port for da Controooler
 	 * @param porterino
 	 */
-	public Controller(int porterino) {
+	public ControllerTwoJoysticks(int porterino) {
 		j = new Joystick(porterino);
 	}
-	
-	/**
-	 * Left x
-	 */
-	public double getX() {
-		return j.getX();
-	}
-	
+
+    /**
+     * Left x
+     */
+    public double getLX() {
+        return j.getX(Hand.kLeft);
+    }
+
 	/**
 	 * Left y
 	 */
 	public double getLY() {
-		return -j.getY();
+		return -j.getY(Hand.kLeft);
 	}
-	
-	/**
-	 * Left x
-	 */
-	public double getLX() {
-		return j.getX();
-	}
-	
-	/**
-	 * Left y
-	 */
-	public double getY() {
-		return -j.getY();
-	}
-	
+
 	/**
 	 * Right x
 	 */
 	public double getRX() {
-		return j.getRawAxis(4);
+		return j.getX(Hand.kRight);
 	}
 
 	/**
 	 * Right y
 	 */
 	public double getRY() {
-		return -j.getRawAxis(5);
+		return -j.getY(Hand.kRight);
 	}
-	
+
+
+
 	/**
 	 * Left trigger
 	 */
@@ -90,10 +78,14 @@ public class Controller {
 		return j.getRawButton(6);
 	}
 	
-	public boolean getRawButton(int b){
-		return j.getRawButton(b);
+	public boolean getRawButton(int port){
+		return j.getRawButton(port);
 	}
-	
+
+    public double getRawAxis(int port) {
+        return j.getRawAxis(port);
+    }
+
 	public void setLed(int led, boolean value) {
 		j.setOutput(led, value);
 	}

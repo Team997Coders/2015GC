@@ -5,6 +5,7 @@ import static org.usfirst.frc.team997.robot.RobotMap.*;
 import org.usfirst.frc.team997.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Elevator extends PIDSubsystem {
 	private ElevatorSpeedController mySpeedController;
-	private AccelMotor myAccelMotor;
+	//private AccelMotor myAccelMotor;
 	private Encoder myEncoder;
 	
     // Initialize your subsystem here
@@ -34,7 +35,8 @@ public class Elevator extends PIDSubsystem {
        mySpeedController = motor;
        myEncoder = new Encoder(encoder1,encoder2);
        myEncoder.setDistancePerPulse(RobotMap.ElevatorDistancePerPulse);
-       myAccelMotor = new AccelMotor(new VelMotor(motor, myEncoder, RobotMap.elevatorVelCal), RobotMap.elevatorMaxAccel);
+       myEncoder.setPIDSourceParameter(PIDSourceParameter.kDistance);
+       //myAccelMotor = new AccelMotor(new VelMotor(motor, myEncoder, RobotMap.elevatorVelCal), RobotMap.elevatorMaxAccel);
     }
     
     public void initDefaultCommand() {
@@ -47,7 +49,8 @@ public class Elevator extends PIDSubsystem {
     }
     
     protected void usePIDOutput(double output) {
-       myAccelMotor.setDesiredVelocity(output);
+       //myAccelMotor.setDesiredVelocity(output);
+       mySpeedController.set(output);
     }
     public void setPIDtarget(double target){
     	setSetpoint(target);

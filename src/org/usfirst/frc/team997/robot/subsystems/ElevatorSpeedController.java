@@ -46,7 +46,7 @@ public class ElevatorSpeedController implements SpeedController {
 
 	@Override
 	public void set(double arg0, byte arg1) {
-
+		motor.set(arg0, arg1);
 	}
 	
 	private double getElevatorCurrent() {

@@ -22,7 +22,6 @@ public class ArcadeDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	/*
     	double max = 1;
     	if (max<Math.abs(Robot.oi.getDesiredArcadeLeftSpeed())){
     		max = Math.abs(Robot.oi.getDesiredArcadeLeftSpeed());
@@ -32,9 +31,6 @@ public class ArcadeDrive extends Command {
     	}
     	
     	subDriveTrain.drive(Robot.oi.getDesiredArcadeLeftSpeed()/max, Robot.oi.getDesiredArcadeRightSpeed()/max);
-    	*/
-    	
-    	subDriveTrain.drive(Robot.oi.getDesiredArcadeLeftSpeed(), Robot.oi.getDesiredArcadeRightSpeed());
     }
 
     // Make this return true when this Command no longer needs to run execute()

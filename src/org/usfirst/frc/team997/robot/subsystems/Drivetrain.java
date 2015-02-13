@@ -48,13 +48,12 @@ public class Drivetrain extends Subsystem {
 		leftAccelMotor = new AccelMotor(new VelMotor(leftMotor, leftEnc, driveVelCal), maxAccelDrive, "left");
 		rightAccelMotor = new AccelMotor(new VelMotor(rightMotor, rightEnc, driveVelCal), maxAccelDrive, "right");
 		myGyro = gyro;
-		myGyro.setSensitivity(RobotMap.gyroSensitivity);
 		shifter = inShifter;
 		
 		initDrive();
 	}
 	
-	public void initDrive() {
+	private void initDrive() {
 		currentMode = RobotMap.defaultDriveMode;
 		gear = 0;
 		this.resetEncoders();
@@ -65,10 +64,6 @@ public class Drivetrain extends Subsystem {
 	public void resetEncoders() {
 		rightEnc.reset();
 		leftEnc.reset();
-	}
-	
-	public double getAverageEncoders() {
-		return(leftEnc.get() + rightEnc.get()) / 2.0;
 	}
 	
 	private void driveVoltage(double lSpeed, double rSpeed) {
@@ -87,10 +82,6 @@ public class Drivetrain extends Subsystem {
 		} else {
 			driveAcceleration(lSpeed, rSpeed);
 		}
-	}
-	
-	public void Stop() {
-		this.driveVoltage(0, 0);
 	}
 	
 	// gear: 0 = low, 1 = high

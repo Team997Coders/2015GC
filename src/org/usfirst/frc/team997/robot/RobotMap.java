@@ -50,6 +50,7 @@ public class RobotMap {
 	public static final Value DriveShiftHighDirection = DoubleSolenoid.Value.kReverse;
 	
 	public static final int defaultDriveMode = Drivetrain.VoltageMode;
+	public static final double gyroSensitivity = 0.007;
 	public static final double driveVelCal = .1;
 	public static final double maxAccelDrive = 10;
 	public static final double pElev = 1;

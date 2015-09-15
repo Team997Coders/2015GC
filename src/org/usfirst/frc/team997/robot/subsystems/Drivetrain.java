@@ -66,9 +66,18 @@ public class Drivetrain extends Subsystem {
 		leftEnc.reset();
 	}
 	
+	public double getAverageEncoders() {
+		return ((leftEnc.getRaw() + rightEnc.getRaw()) / 2.0);
+	}
+	
 	private void driveVoltage(double lSpeed, double rSpeed) {
 		leftMotor.set(lSpeed);
 		rightMotor.set(rSpeed);
+	}
+	
+	public void Stop () {
+		leftMotor.set(0);
+		rightMotor.set(0);
 	}
 	
 	private void driveAcceleration(double lSpeed, double rSpeed) {

@@ -134,13 +134,12 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public String modeAsString() {
-		if(currentMode == VoltageMode)
-			return "Voltage";
-		if (currentMode == AccelorationMode) 
-			return "Acceloration";
-		if (currentMode == VelocityMode) 
-			return "Velocity";
-			return null;
+		switch(currentMode) {
+		case VoltageMode: return "Voltage";
+		case AccelorationMode: return "Acceloration";
+		case VelocityMode: return "Velocity";
+		default: return null;
+		}
 	}
 	
 	public double getGyro() {

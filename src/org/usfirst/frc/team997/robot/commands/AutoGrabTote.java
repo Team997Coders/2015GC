@@ -7,7 +7,7 @@ public class AutoGrabTote extends CommandGroup {
 	addSequential(new SetGatherSolenoid(true));
     addSequential(new GatherIn(), .25);
     addSequential(new zeroElevator());
-    addSequential(new SetElevatorPosition(.5), 1);
+    addSequential(new SetElevatorPosition(),.5);
     addSequential(new SetGatherSolenoid(false));
 	}
 }

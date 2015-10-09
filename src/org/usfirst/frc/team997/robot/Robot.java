@@ -5,10 +5,8 @@ import static org.usfirst.frc.team997.robot.RobotMap.ElevatorMotorSlot;
 import static org.usfirst.frc.team997.robot.RobotMap.ElevatorSolenoidAft;
 import static org.usfirst.frc.team997.robot.RobotMap.ElevatorSolenoidFore;
 import static org.usfirst.frc.team997.robot.RobotMap.dElev;
-import static org.usfirst.frc.team997.robot.RobotMap.elevatorEncoder1;
 import static org.usfirst.frc.team997.robot.RobotMap.elevatorMaxAccel;
 import static org.usfirst.frc.team997.robot.RobotMap.elevatorVelCal;
-import static org.usfirst.frc.team997.robot.RobotMap.elvatorEncoder2;
 import static org.usfirst.frc.team997.robot.RobotMap.iElev;
 import static org.usfirst.frc.team997.robot.RobotMap.leftDrive;
 import static org.usfirst.frc.team997.robot.RobotMap.pElev;
@@ -96,15 +94,19 @@ public class Robot extends IterativeRobot {
 					new ElevatorSpeedController(
 							new Talon(ElevatorMotorSlot), 
 							new DoubleSolenoid(ElevatorSolenoidFore, ElevatorSolenoidAft)), 
-							elevatorVelCal, 
-							elevatorMaxAccel, 
-							elevatorEncoder1, 
-							elvatorEncoder2, 
-							RobotMap.LimitTopSlot,
-							RobotMap.LimitLowSlot,
-							pElev, 
-							iElev, 
-							dElev);
+							
+					elevatorVelCal, 
+					elevatorMaxAccel, 
+					//	elevatorEncoder1, 
+				//	elvatorEncoder2, 
+					RobotMap.LimitTopSlot,
+					RobotMap.LimitLowSlot,
+					pElev, 
+					iElev, 
+					dElev,
+					RobotMap.clawSlot1,
+					RobotMap.clawSlot2
+				);
 			} catch(Exception e) {
 				e.printStackTrace();
 				System.out.println("elevator");
@@ -220,7 +222,7 @@ public class Robot extends IterativeRobot {
 	public void SmartDashboard() {
 //		myGatherer().SmartDashboard();
 //		oi.SmartDashboard();
-//		subDriveTrain().SmartDashboard();
+	subDriveTrain().SmartDashboard();
 //		myElevator().SmartDashboard();
 	}
 }

@@ -11,14 +11,14 @@ public class TwoToteAuto extends CommandGroup {
     	addSequential(new SetGatherSolenoid(false));
         addSequential(new GatherIn(), 1);
         addSequential(new zeroElevator());
-        addSequential(new SetElevatorPosition(.5),2);
+        addSequential(new SetElevatorPosition(), .5);
         addSequential(new SetGatherSolenoid(true));
         addSequential(new RotateClockwise(180, true));
         addSequential(new Wait(), 1);
         addSequential(new SetGatherSolenoid(false));
         addSequential(new GatherIn(), 1);
         addSequential(new zeroElevator());
-        addSequential(new SetElevatorPosition(.5), 2);
+        addSequential(new SetElevatorPosition(), .5);
         addSequential(new RotateClockwise(180, false));
         addSequential(new DriveStraight());
     }

@@ -35,8 +35,8 @@ public class RobotMap {
 	public static final int LimitLowSlot = 7;
 	public static final int rightDriveEncoder1 = 0;
 	public static final int rightDriveEncoder2 = 1;
-	public static final int elevatorEncoder1 = 3;
-	public static final int elvatorEncoder2 = 4;
+//	public static final int elevatorEncoder1 = 3;
+//	public static final int elvatorEncoder2 = 4;
 	public static final int leftDriveEncoder1 = 5;
 	public static final int leftDriveEncoder2 = 6;
 	
@@ -70,6 +70,9 @@ public class RobotMap {
 	public static final int ElevatorMotorCurrentSlot1 = 12;
 	public static final int ElevatorMotorCurrentSlot2 = 13;
 	public static final double CalibrationUltrasonic = 102.396;
+	
+	public static final int clawSlot2 = 7;
+	public static final int clawSlot1 = 6;
 	
 
 	

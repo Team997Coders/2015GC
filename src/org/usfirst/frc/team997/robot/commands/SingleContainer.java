@@ -10,7 +10,7 @@ public class SingleContainer extends CommandGroup {
     public  SingleContainer() {
     	 
          addSequential(new zeroElevator());
-         addSequential(new SetElevatorPosition(.75), 2);
+         addSequential(new SetElevatorPosition(), .5);
          addSequential(new RotateCounterClockwise(90, true));
          addSequential(new Wait(), 1);
          addSequential(new DriveStraight(), 4);

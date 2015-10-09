@@ -1,11 +1,11 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
 import org.usfirst.frc.team997.robot.RobotMap;
-import org.usfirst.frc.team997.robot.commands.ElevatorPosition;
 import org.usfirst.frc.team997.robot.commands.ElevatorRaw;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -14,22 +14,26 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Elevator extends PIDSubsystem {
 	private ElevatorSpeedController mySpeedController;
-	private Encoder myEncoder;
+	//private Encoder myEncoder;
 	private DigitalInput limitTop;
 	private DigitalInput limitLow;
+	private DoubleSolenoid claw;
 	
     // Initialize your subsystem here
     public Elevator(
     		ElevatorSpeedController motor, 
     		double velCal, 
     		double accelMax, 
-    		int encoder1, 
-    		int encoder2, 
+    	//	int encoder1, 
+    	//	int encoder2, 
     		int limitTopSlot,
     		int limitLowSlot,
     		double p, 
     		double i, 
-    		double d) 
+    		double d,
+    		int sol1,
+    		int sol2
+    		) 
     {
     	
        super(p, i, d);
@@ -41,8 +45,10 @@ public class Elevator extends PIDSubsystem {
 	       setAbsoluteTolerance(RobotMap.absuluteElevatorTolerance);
 	       setPercentTolerance(RobotMap.percentTolerance);
 	       mySpeedController = motor;
-	       myEncoder = new Encoder(encoder1,encoder2);
-	       myEncoder.setDistancePerPulse(RobotMap.ElevatorDistancePerPulse);
+	       
+	     claw = new DoubleSolenoid(sol1, sol2);
+	  //     myEncoder = new Encoder(encoder1,encoder2);
+	  //     myEncoder.setDistancePerPulse(RobotMap.ElevatorDistancePerPulse);
 	    //added a println
 	    //@ Madison
     	} catch (Exception E) {
@@ -56,7 +62,8 @@ public class Elevator extends PIDSubsystem {
     }
     
     protected double returnPIDInput() {
-    	return myEncoder.getDistance();
+   // 	return myEncoder.getDistance();
+    return 0;
     }
     
     protected void usePIDOutput(double output) {
@@ -71,7 +78,7 @@ public class Elevator extends PIDSubsystem {
 
 	public void SmartDashboard() {
 		SmartDashboard.putNumber("Elevator Target", this.getSetpoint());
-		SmartDashboard.putNumber("Elevator Encoder", this.myEncoder.getDistance());
+		//SmartDashboard.putNumber("Elevator Encoder", this.myEncoder.getDistance());
 		SmartDashboard.putBoolean("TopLimit", getTopLimit());
 		SmartDashboard.putBoolean("Limit low", getLowLimit());
 		SmartDashboard.putData(this);
@@ -90,6 +97,25 @@ public class Elevator extends PIDSubsystem {
 	}
 	
 	public void zeroEncoder(){
-		myEncoder.reset();
+	//	myEncoder.reset();
 	}
+	
+	private boolean clawOpen = true;
+	public void openClaw() {
+		claw.set(Value.kForward);
+		clawOpen = true;
+	}
+	public void closeClaw() {
+		claw.set(Value.kReverse);
+		clawOpen = false;
+	}
+	
+	public void toggleClaw() {
+		if (clawOpen) {
+			closeClaw();
+		} else {
+			openClaw();
+		}
+	}
+	
 }

@@ -66,6 +66,11 @@ public class Drivetrain extends Subsystem {
 		leftEnc.reset();
 	}
 	
+	public double getAverageEncoders() {
+		return ((leftEnc.getDistance() + rightEnc.getDistance() )/ 2.0);
+	}
+
+	
 	private void driveVoltage(double lSpeed, double rSpeed) {
 		leftMotor.set(lSpeed);
 		rightMotor.set(rSpeed);
@@ -82,6 +87,10 @@ public class Drivetrain extends Subsystem {
 		} else {
 			driveAcceleration(lSpeed, rSpeed);
 		}
+	}
+	
+	public void stop() {
+		driveVoltage(0.0, 0.0);
 	}
 	
 	// gear: 0 = low, 1 = high

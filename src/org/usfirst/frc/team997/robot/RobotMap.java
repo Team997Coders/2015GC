@@ -2,7 +2,6 @@ package org.usfirst.frc.team997.robot;
 
 import org.usfirst.frc.team997.robot.subsystems.Drivetrain;
 
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 

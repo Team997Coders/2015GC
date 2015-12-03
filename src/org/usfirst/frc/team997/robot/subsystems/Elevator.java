@@ -1,13 +1,10 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
-import static org.usfirst.frc.team997.robot.RobotMap.*;
-
 import org.usfirst.frc.team997.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -35,8 +32,8 @@ public class Elevator extends PIDSubsystem {
        mySpeedController = motor;
        myEncoder = new Encoder(encoder1,encoder2);
        myEncoder.setDistancePerPulse(RobotMap.ElevatorDistancePerPulse);
-       myEncoder.setPIDSourceParameter(PIDSourceParameter.kDistance);
        //myAccelMotor = new AccelMotor(new VelMotor(motor, myEncoder, RobotMap.elevatorVelCal), RobotMap.elevatorMaxAccel);
+       LiveWindow.addActuator("Elevator", "PIDSubsystem Controller", getPIDController());
     }
     
     public void initDefaultCommand() {

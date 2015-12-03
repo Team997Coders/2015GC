@@ -52,4 +52,15 @@ public class ElevatorSpeedController implements SpeedController {
 	private double getElevatorCurrent() {
 		return Robot.pdp.getCurrent(RobotMap.ElevatorMotorSlot);
 	}
+	
+	@Override
+	public boolean getInverted() {
+		return motor.getInverted();
+	}
+	
+	@Override
+	public void setInverted(boolean set) {
+		motor.setInverted(set);
+	}
+
 }

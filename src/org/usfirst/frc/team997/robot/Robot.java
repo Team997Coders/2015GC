@@ -24,6 +24,7 @@ import org.usfirst.frc.team997.robot.subsystems.Elevator;
 import org.usfirst.frc.team997.robot.subsystems.ElevatorSpeedController;
 import org.usfirst.frc.team997.robot.subsystems.Gatherer;
 import org.usfirst.frc.team997.robot.subsystems.RSpeedController;
+import org.usfirst.frc.team997.robot.subsystems.BinGrabber;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
@@ -88,6 +89,20 @@ public class Robot extends IterativeRobot {
 			}
 		}
 		return myGatherer;
+	}
+
+	private static BinGrabber myGrabber=null;
+	public static final BinGrabber myGrabber() {
+		if(myGrabber == null) {   
+			try {myGrabber = new BinGrabber(
+					new DoubleSolenoid(RobotMap.BinGrabberSolenoidOpen, RobotMap.BinGrabberSolenoidClose)
+					);
+			} catch(Exception e) {
+				e.printStackTrace();
+				System.out.println("gatherer");
+			}
+		}
+		return myGrabber;
 	}
 
 	public static Elevator myElevator() {

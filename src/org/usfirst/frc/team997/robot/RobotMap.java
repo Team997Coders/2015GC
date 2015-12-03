@@ -50,6 +50,8 @@ public class RobotMap {
 	public static final int ShifterSolenoidHigh = 1;
 	public static int gatherSol1 = 4;
 	public static int gatherSol2 = 5;
+	public static final int BinGrabberSolenoidOpen = 6;
+	public static final int BinGrabberSolenoidClose = 7;
 	
 	// constants
 	public static double GyroSensitivity = .007;

@@ -11,6 +11,8 @@ import org.usfirst.frc.team997.robot.commands.SetElevatorPosition;
 import org.usfirst.frc.team997.robot.commands.SetGatherSolenoid;
 import org.usfirst.frc.team997.robot.commands.SetGatherSolenoidToggle;
 import org.usfirst.frc.team997.robot.commands.ToggleShift;
+import org.usfirst.frc.team997.robot.commands.OpenGrabber;
+import org.usfirst.frc.team997.robot.commands.CloseGrabber;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -30,6 +32,8 @@ public class OI {
 	public Button GatherOutButton;
 	public Button GatherInButton;
 	public Button GatherRotateButton;
+	public Button OpenGrabberButton;
+	public Button CloseGrabberButton;
 	
 	
 	public OI () {
@@ -41,12 +45,16 @@ public class OI {
 		GatherInButton = new JoystickButton(myController, 5);
 		GatherOutButton = new JoystickButton(myController, 6);
 		GatherRotateButton = new JoystickButton(myController, 2);
+		OpenGrabberButton = new JoystickButton(myController, 7);
+		CloseGrabberButton = new JoystickButton(myController, 8);
 		
 		setSolenoidButton.whenPressed(new SetGatherSolenoidToggle());
 		shiftButton.whenPressed(new ToggleShift());
 		GatherInButton.whileHeld(new GatherIn());
 		GatherOutButton.whileHeld(new GatherOut());
 		GatherRotateButton.whileHeld(new GatherRotate());
+		OpenGrabberButton.whenPressed(new OpenGrabber());
+		CloseGrabberButton.whenPressed(new CloseGrabber());
 		
 		SmartDashboard.putData("TogggleShift", new ToggleShift());
 		SmartDashboard.putData("ManipulatorShift toggle", new SetGatherSolenoidToggle());

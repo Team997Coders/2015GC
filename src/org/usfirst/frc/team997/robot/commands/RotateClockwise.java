@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
 public class RotateClockwise extends Command {
 	private double actAngle;
 	private boolean mClockwise;
-    public RotateClockwise(double angle, boolean clockwise) {
+	
+    public RotateClockwise(double angle, boolean clockwise) {  	
         // Use requires() here to declare subsystem dependencies
         requires(Robot.subDriveTrain());
         actAngle = angle;

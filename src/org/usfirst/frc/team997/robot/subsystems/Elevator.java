@@ -1,7 +1,6 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
 import org.usfirst.frc.team997.robot.RobotMap;
-import org.usfirst.frc.team997.robot.commands.ElevatorPosition;
 import org.usfirst.frc.team997.robot.commands.ElevatorRaw;
 
 import edu.wpi.first.wpilibj.DigitalInput;

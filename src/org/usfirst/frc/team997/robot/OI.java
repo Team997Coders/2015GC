@@ -1,7 +1,5 @@
 package org.usfirst.frc.team997.robot;
 
-import javafx.scene.control.ToggleButton;
-
 import org.usfirst.frc.team997.robot.commands.ArcadeDrive;
 import org.usfirst.frc.team997.robot.commands.DriveStraight;
 import org.usfirst.frc.team997.robot.commands.ElevatorPosition;
@@ -9,7 +7,6 @@ import org.usfirst.frc.team997.robot.commands.ElevatorRaw;
 import org.usfirst.frc.team997.robot.commands.GatherIn;
 import org.usfirst.frc.team997.robot.commands.GatherOut;
 import org.usfirst.frc.team997.robot.commands.GatherRotate;
-import org.usfirst.frc.team997.robot.commands.RotateClockwise;
 import org.usfirst.frc.team997.robot.commands.SetElevatorPosition;
 import org.usfirst.frc.team997.robot.commands.SetGatherSolenoid;
 import org.usfirst.frc.team997.robot.commands.SetGatherSolenoidToggle;

@@ -62,7 +62,7 @@ public class VelMotor {
 		currentCurrent = max(currentCurrent + adjustedError,1);
 		 
 		myMotor.set(deadband(currentCurrent, .05));
-		SmartDashboard.putNumber(name +"encoderRate",encoderRate);
+		SmartDashboard.putNumber(name +"encoderRate",myEncoder.getRate());
 		SmartDashboard.putNumber(name +"currentCurrent" ,currentCurrent);
 		SmartDashboard.putNumber(name +"desiredVel(vel)", desiredVelocity);
 	

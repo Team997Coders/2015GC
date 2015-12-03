@@ -1,7 +1,6 @@
 package org.usfirst.frc.team997.robot.commands;
 
 import org.usfirst.frc.team997.robot.Robot;
-import org.usfirst.frc.team997.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -36,10 +35,6 @@ public class ElevatorPosition extends Command {
     	Robot.myElevator().disable();
 
     }
-    
-    private double getElevatorCurrent() {
-		return Robot.pdp().getCurrent(RobotMap.ElevatorMotorSlot);
-	}
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run

@@ -2,11 +2,7 @@ package org.usfirst.frc.team997.robot.subsystems;
 
 import static org.usfirst.frc.team997.robot.RobotMap.DriveTrainDistancePerPulse;
 import static org.usfirst.frc.team997.robot.RobotMap.driveVelCal;
-import static org.usfirst.frc.team997.robot.RobotMap.leftDriveEncoder1;
-import static org.usfirst.frc.team997.robot.RobotMap.leftDriveEncoder2;
 import static org.usfirst.frc.team997.robot.RobotMap.maxAccelDrive;
-import static org.usfirst.frc.team997.robot.RobotMap.rightDriveEncoder1;
-import static org.usfirst.frc.team997.robot.RobotMap.rightDriveEncoder2;
 
 import org.usfirst.frc.team997.robot.RobotMap;
 import org.usfirst.frc.team997.robot.commands.ArcadeDrive;
@@ -35,7 +31,7 @@ public class Drivetrain extends Subsystem {
 
 	private Encoder leftEnc;
 	private Encoder rightEnc;
-	public static int gear;
+	public int gear;
 	public static final int VoltageMode = 0;
 	public static final int VelocityMode = 1;
 	public static final int AccelorationMode = 2;
@@ -73,6 +69,10 @@ public class Drivetrain extends Subsystem {
 	private void driveVoltage(double lSpeed, double rSpeed) {
 		leftMotor.set(lSpeed);
 		rightMotor.set(rSpeed);
+	}
+	
+	public int getGear() {
+		return this.gear;
 	}
 
 	private void driveAcceleration(double lSpeed, double rSpeed) {

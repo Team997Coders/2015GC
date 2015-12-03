@@ -2,8 +2,6 @@ package org.usfirst.frc.team997.robot;
 
 import org.usfirst.frc.team997.robot.subsystems.Drivetrain;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -29,6 +27,7 @@ public class RobotMap {
 	public static final int leftDrive = 3;
 	public static final int rightDrive = 2;
 	public static final int ElevatorMotorSlot = 4;
+	
 
 	// digital inputs
 	public static final int LimitTopSlot = 2;

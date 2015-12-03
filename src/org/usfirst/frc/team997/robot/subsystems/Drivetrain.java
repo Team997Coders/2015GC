@@ -170,4 +170,8 @@ public class Drivetrain extends Subsystem {
 		myGyro.initGyro();
 		this.resetGyro();
 	}
+	
+	public void initDrive() {
+		this.resetEncoders();
+	}
 }

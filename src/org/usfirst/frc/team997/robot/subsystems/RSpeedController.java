@@ -26,6 +26,17 @@ public class RSpeedController implements SpeedController{
 	public double get() {
 		return motor.get();
 	}
+	
+	@Override
+	public boolean getInverted() {
+		return motor.getInverted();
+	}
+
+	@Override
+	public void setInverted(boolean set) {
+		motor.setInverted(set);
+	}
+
 
 	@Override
 	public void set(double arg0) {
